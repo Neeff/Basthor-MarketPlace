@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'products/show'
+  get 'products/create'
+  get 'products/destroy'
   resources :shops
   devise_for :users
   root 'shops#index'

@@ -1,10 +1,13 @@
 <div class="container">
-
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item"><%= link_to "Editar Tienda", edit_shop_path(@shop), data:{ remote: true } %></li>
+        <li class="list-group-item"><%= link_to "Eliminar Tienda",shop_path(@shop) ,method: :delete, data:{ remote: true , confirm: 'Estas Seguro!?'} %></li>
+      </ul>
                 <div class="row">
             
                   <div class="col-lg-3">
-            
-                    <h1 class="my-4">Shop Name</h1>
+                      <%= image_tag(@shop.images.first.variant(resize: '200x200')) %>
+                    <h1 class="my-4" id="shop_name"><%= @shop.name%></h1>
                     <div class="list-group">
                       <a href="#" class="list-group-item">Category 1</a>
                       <a href="#" class="list-group-item">Category 2</a>
@@ -15,6 +18,10 @@
                   <!-- /.col-lg-3 -->
             
                   <div class="col-lg-9">
+
+                      <div id="image">
+                          <%= image_tag(@shop.images.second.variant(resize: '1000x400'),class: 'd-block img-fluid') %>
+                        </div>
             
                     <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                       <ol class="carousel-indicators">
@@ -152,3 +159,5 @@
             
               </div>
               <!-- /.container -->
+
+              <%= render  "modal" %>

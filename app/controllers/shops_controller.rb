@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: %i[show update destroy]
+  before_action :set_shop, only: %i[show edit update destroy]
   def index
     @shops = Shop.all
   end
@@ -21,11 +21,23 @@ class ShopsController < ApplicationController
 
   def show
   end
+  
+  def edit
+    respond_to :js
+  end
 
   def update
+    @shop.update(shop_params)
+    if @shop.save
+      respond_to :js
+    else
+      redirect_to root_path, alert: 'Error al Actualizar la Tienda'
+    end
   end
 
   def destroy
+    @shop.delete
+    respond_to :js
   end
 
   private

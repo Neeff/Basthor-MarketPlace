@@ -3,8 +3,6 @@
 <div class="container">
                 <ul class="list-group list-group-horizontal">
                                 <li class="list-group-item"><%= link_to  "Crear Tienda", new_shop_path, data:{ remote: true}%></li>
-                                <li class="list-group-item"><a href="#">Editar Tienda</a></li>
-                                <li class="list-group-item"><a href="#">Eliminar Tienda</a></li>
                               </ul>
 
                 <div class="row">
@@ -12,11 +10,6 @@
                   <div class="col-lg-3">
             
                     <h1 class="my-4">Tiendas</h1>
-                    <div class="list-group">
-                      <a href="#" class="list-group-item">Category 1</a>
-                      <a href="#" class="list-group-item">Category 2</a>
-                      <a href="#" class="list-group-item">Category 3</a>
-                    </div>
             
                   </div>
                   <!-- /.col-lg-3 -->
@@ -54,7 +47,7 @@
                       <div class="shops">
                           <%= render  @shops %>
                       </div>
-                      <!-- /.shops -->
+                      <!-- /.shops --> 
             
                     </div>
                     <!-- /.row -->
