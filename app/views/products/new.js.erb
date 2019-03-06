@@ -1,0 +1,3 @@
+$('.modal-title').text('Crear Producto');
+$('#exampleModal').modal('show');
+$('.modal-body').html("<%= j render 'form_product',  shop: @shop, product: @product%>")

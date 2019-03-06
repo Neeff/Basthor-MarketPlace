@@ -1,0 +1,4 @@
+<% if remotipart_submitted? %>
+         $('#products').append("<%#= j render products/product, @product%>");
+        $('#exampleModal').modal('hide');
+        <% end %>

@@ -1,0 +1,31 @@
+<%= form_with(model: [shop, product], multipart: true) do |f| %>
+<div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+</div>
+
+<div class="field">
+        <%= f.label :price %>
+        <%= f.number_field :price, class: 'form-control' %>
+</div>
+
+<div class="field">
+        <%= f.label :stock %>
+        <%= f.number_field :stock, class: 'form-control' %>
+
+</div>
+
+<div class="field">
+        <%= f.label :descripcion %>
+        <%= f.text_area :description, class: 'form-control' %>
+
+</div>
+
+<div class="field">
+        <%= f.label :Agregar_Imagen_del_producto %>
+        <%= f.drag_and_drop_file_field :image, nil, accept: 'image/png, image/jpeg, image/gif, image/tiff' %>
+</div>
+
+<%= f.submit 'Crear Producto', class: 'btn btn-success' %>
+<% end %>

@@ -20,6 +20,7 @@ class ShopsController < ApplicationController
   end
 
   def show
+    @products = Product.where(shop_id: @shop.id)
   end
   
   def edit
