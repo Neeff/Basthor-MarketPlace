@@ -1,0 +1,18 @@
+<%= form_with(model: shop) do |f| %>
+        <div class="field">
+                <%= f.label :Nombre_Tienda %>
+                <%= f.text_field :name, class: 'form-control'%>
+        </div>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <div class="field">
+                <%= f.label :Descripcion %>
+                <%= f.text_area :description, class: 'form-control'%>
+        </div>
+        
+        <div class="field">
+                <%= f.label :Imagenes %>
+                <%= f.file_field :images, multiple: true %>
+        </div>
+        <%= f.submit 'Crear Tienda', class: 'btn btn-success' %>
+<% end %>

@@ -6,10 +6,17 @@ class ShopsController < ApplicationController
 
   def new
     @shop = Shop.new
+    respond_to :js
   end
 
   def create
     @shop = Shop.new(shop_params)
+    @shop.user = current_user
+    if @shop.save
+      respond_to :js
+    else
+      redirect_to root_path, alert: 'Error Tienda no Creada Intente Nuevamente'
+    end
   end
 
   def show
@@ -28,6 +35,6 @@ class ShopsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :description, :images [])
+    params.require(:shop).permit(:name, :description, :user_id, images: [])
   end
 end
