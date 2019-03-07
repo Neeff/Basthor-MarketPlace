@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :shops do 
-    resources :products, only: %i[new show create destroy]
+    resources :products, only: %i[new edit update show create destroy]
   end 
   devise_for :users
   root 'shops#index'

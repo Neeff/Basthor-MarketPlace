@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[show]
+  before_action :set_product, only: %i[show edit update destroy]
   def show
+  end
+
+  def edit
+    @shop = Shop.find(params[:shop_id])
+    respond_to :js
   end
 
   def new
@@ -13,9 +18,18 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.shop_id = params[:shop_id]
     if @product.save
-      respond_to :js
+      redirect_to shop_path(params[:shop_id])
     else
       redirect_to root_path, alert: 'Error al crear Producto'
+    end
+  end
+
+  def update
+    @product.update(product_params)
+    if @product.save
+      redirect_to shop_path(params[:shop_id])
+    else
+      redirect_to root_path, alert: 'Error al Actualizar Producto'
     end
   end
 

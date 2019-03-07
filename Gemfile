@@ -36,7 +36,7 @@ gem 'devise'
 gem 'active_storage_drag_and_drop'
 
 gem 'image_processing', '~> 1.2'
-gem 'remotipart', '~> 1.2'
+gem 'remotipart'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
