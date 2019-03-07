@@ -10,6 +10,8 @@
                   <div class="col-lg-3">
             
                     <h1 class="my-4">Tiendas</h1>
+
+                    <%= render  "search", shop: @shop %>
             
                   </div>
                   <!-- /.col-lg-3 -->
@@ -44,7 +46,7 @@
                     </div>
             
                     <div class="row">
-                      <div class="shops">
+                      <div class="shops" id="shops">
                           <%= render  @shops %>
                       </div>
                       <!-- /.shops --> 
@@ -63,4 +65,17 @@
 
               <%= render  "modal" %>
 
+
+              <script>
+                  $('#search').keyup(function(){
+                    $.ajax({
+                      type: "GET",
+                      url: "<%= search_shops_path%>",
+                      data: {search: $('#search').val()},
+                      success: function (response) {
+                              
+                      }
+                });
+                  });
+                </script>
             

@@ -41,6 +41,20 @@ class ShopsController < ApplicationController
     respond_to :js
   end
 
+  def search
+    parameters = params[:search]
+    if parameters.blank?
+      @shops = Shop.all
+      respond_to :js
+    elsif parameters.nil?
+      @shops = Shop.all
+      respond_to :js
+    else
+      @shops = Shop.where('name LIKE ?',"%#{parameters}%")
+      respond_to :js
+    end
+  end
+
   private
 
   def set_shop

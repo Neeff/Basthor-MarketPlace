@@ -38,6 +38,20 @@ class ProductsController < ApplicationController
     respond_to :js
   end
 
+  def search
+    parameters = params[:search]
+    if parameters.blank?
+      @products = Product.all
+      respond_to :js
+    elsif parameters.nil?
+      @products = Product.all
+      respond_to :js
+    else
+      @products = Product.where('name LIKE ?',"%#{parameters}%")
+      respond_to :js
+    end
+  end
+
   private
 
   def set_product
