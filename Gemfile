@@ -37,6 +37,8 @@ gem 'active_storage_drag_and_drop'
 
 gem 'image_processing', '~> 1.2'
 gem 'remotipart'
+
+gem 'cancancan', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

@@ -66,8 +66,16 @@
                                       <a href="#"><%= product.name%></a>
                                     </h4>
                                     <h5><span class="badge badge-success">$<%=product.price%></span><span class="badge badge-warning">Stock:<%= product.stock %></span></h5>
+                                    <% if can? :update, Product %>
                                     <%= link_to  "Editar", edit_shop_product_path(@shop,product), class: 'btn btn-info', data:{remote: true}  %>
                                     <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
+
+                                    <% else %>
+                                      <a href="#" class="btn btn-primary">Agregar al carro</a>
+                                  
+                                    <% end %>
+                                     
+                                         
                                 </div>
                                 <div class="card-footer">
                                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
