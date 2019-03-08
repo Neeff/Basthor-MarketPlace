@@ -24,6 +24,12 @@
           <dt>Descripcion</dt>
           <dd><p><%= @product.description  %></p></dd>
         </dl>
+        <dl class="item-property">
+                <dt>Categorias</dt>
+                <% @product.categories.each do |category|  %>
+                <a href=""><span class="badge badge-warning"><%=category.name%></span></a>
+                <% end %>
+              </dl>
         <dl class="param param-feature">
           <dt>Stock</dt>
           <dd><h2><span class="badge badge-warning"><%= @product.stock %></span></h2></dd>

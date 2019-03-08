@@ -14,6 +14,12 @@
                     <h1 class="my-4">Tiendas</h1>
 
                     <%= render  "search", shop: @shop %>
+                    <div class="list-group">
+                      <% @category.each do |category| %>
+                        <a href="#" class="list-group-item"><span class="badge badge-success"><%= category.name %></span><span class="badge badge-primary"><%= category.products.count%></span> </a>
+                      <% end %>
+                      
+                    </div>
             
                   </div>
                   <!-- /.col-lg-3 -->

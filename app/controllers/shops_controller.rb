@@ -3,6 +3,7 @@ class ShopsController < ApplicationController
   load_and_authorize_resource
   def index
     @shops = Shop.all
+    @category = Category.all
   end
 
   def new
