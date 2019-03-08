@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.delete
+    @product.destroy
     respond_to :js
   end
 
