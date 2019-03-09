@@ -44,7 +44,7 @@
                         </div> <!-- col.// -->
                 </div> <!-- row.// -->
                 <hr>
-                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Agregar al Carrito </a>
+                <%= link_to "Agregar al Carrito",shop_product_orders_path(@product.shop, @product), data: {remote: true}, method: :post, class:"btn btn-primary" %>
         </article> <!-- card-body.// -->
                         </aside> <!-- col.// -->
                 </div> <!-- row.// -->

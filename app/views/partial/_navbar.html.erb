@@ -15,6 +15,9 @@
               <li class="nav-item">
                   <a class="nav-link" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= cart_orders_path%>"><i class="fas fa-shopping-cart"></i> <span class="badge badge-warning" id="cart"><%= current_user.cart.count %></span></a>
+                  </li>
               <% else %>
               <li class="nav-item">
                   <a class="nav-link" href="<%=new_user_session_path%>">Inciar Sesion</a>

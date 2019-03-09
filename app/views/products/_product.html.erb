@@ -1,17 +1,24 @@
-<div id="<%= product.id %>"></div>
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                  <a href="#"><%= image_tag(product.image.variant(resize: '200x200'), class: "card-img-top") %></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#"><%= product.name%></a>
-                    </h4>
-                    <h5><span class="badge badge-success">$<%=product.price%></span><span class="badge badge-warning">Stock:<%= product.stock %></span></h5>
-              
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                </div>
-              </div>
-            </div>
+<div class="col-lg-4 col-md-6 mb-4" id="<%= product.id%>">
+  <div class="card h-100">
+    <a href="<%= shop_product_path(product.shop.id, product)%>"><%= image_tag(product.image.variant(resize: '800x800'),class: "card-img-top") %></a>
+    <div class="card-body">
+      <h4 class="card-title">
+        <a href="#"><%= product.name%></a>
+      </h4>
+      <h5><span class="badge badge-success">$<%=product.price%></span><span class="badge badge-warning">Stock:<%= product.stock %></span></h5>
+      <% if can? :update, Product %>
+      <%= link_to  "Editar", edit_shop_product_path(product.shop,product), class: 'btn btn-info', data:{remote: true}  %>
+      <%= link_to  "Eliminar",shop_product_path(product.shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
+
+      <% else %>
+        <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
+    
+      <% end %>
+       
+           
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+  </div>
+</div>
+</div>

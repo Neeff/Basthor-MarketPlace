@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum role: %i[client provider guest]
   has_one :shop
+  has_many :orders
+
+  def cart
+    orders.where(paid: false)
+  end
 end

@@ -23,6 +23,7 @@ class ShopsController < ApplicationController
 
   def show
     @products = Product.where(shop_id: @shop.id)
+    @order = Order.new
   end
   
   def edit
@@ -55,6 +56,9 @@ class ShopsController < ApplicationController
       @shops = Shop.where('name LIKE ?',"%#{parameters}%")
       respond_to :js
     end
+  end
+
+  def cart 
   end
 
   private

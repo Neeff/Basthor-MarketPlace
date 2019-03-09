@@ -1,8 +1,11 @@
 <div class="container">
     <ul class="list-group list-group-horizontal">
-        <li class="list-group-item"><%= link_to "Editar Tienda", edit_shop_path(@shop), data:{ remote: true } %></li>
-        <li class="list-group-item"><%= link_to "Eliminar Tienda",shop_path(@shop) ,method: :delete, data:{ remote: true , confirm: 'Estas Seguro!?'} %></li>
-        <li class="list-group-item"><%= link_to "Crear Producto",new_shop_product_path(@shop), data:{ remote: true} %></li>
+        <% if current_user.provider? %>
+          <li class="list-group-item"><%= link_to "Editar Tienda", edit_shop_path(@shop), data:{ remote: true } %></li>
+          <li class="list-group-item"><%= link_to "Eliminar Tienda",shop_path(@shop) ,method: :delete, data:{ remote: true , confirm: 'Estas Seguro!?'} %></li>
+          <li class="list-group-item"><%= link_to "Crear Producto",new_shop_product_path(@shop), data:{ remote: true} %></li>
+         <% end %>
+        
       </ul>
                 <div class="row">
             
@@ -29,7 +32,7 @@
                           <%= image_tag(@shop.images.second.variant(resize: '1000x400'),class: 'd-block img-fluid') %>
                         </div>
             
-                    <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                    <!--<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                       <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -54,7 +57,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                       </a>
-                    </div>
+                    </div>-->
             
                     <div class="row" id='products'>
                           <% @products.each do |product| %>
@@ -71,7 +74,7 @@
                                     <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
 
                                     <% else %>
-                                      <a href="#" class="btn btn-primary">Agregar al carro</a>
+                                    <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
                                   
                                     <% end %>
                                      
