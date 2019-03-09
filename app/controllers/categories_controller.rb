@@ -1,13 +1,13 @@
 class CategoriesController < ApplicationController
-  def create
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to root_path, notice: 'categoria creada con exito'
-    end
-  end
-private 
 
-  def category_params
-    params.require(:category).permit(:name)
+  before_action :set_category, only: %i[show]
+
+  def show  
+  end
+
+  private
+
+  def set_category
+    @category = Category.find(params[:id])
   end
 end

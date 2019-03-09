@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  product: one
+  payment: one
+  shop: one
+  paid: false
+  dispached: false
+  completed: false
+  quantity: 1
+  price: 9.99
+
+two:
+  user: two
+  product: two
+  payment: two
+  shop: two
+  paid: false
+  dispached: false
+  completed: false
+  quantity: 1
+  price: 9.99

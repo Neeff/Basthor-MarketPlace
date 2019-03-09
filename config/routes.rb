@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories, only: %i[create]
-  resources :categoryproducts, only: %i[create]
+  resources :categories, only: %i[show]
   resources :shops do
     collection do
       get :search
