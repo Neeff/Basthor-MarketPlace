@@ -1,1 +1,1 @@
-$('#cart').html('<%= @cart_count%>')
+$('#cart').text('<%= current_user.orders.count%>');

@@ -6,8 +6,5 @@ class User < ApplicationRecord
   enum role: %i[client provider guest]
   has_one :shop
   has_many :orders
-
-  def cart
-    orders.where(paid: false)
-  end
+  has_many :products, through: :orders
 end

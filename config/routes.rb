@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :categories, only: %i[show]
-  resources :orders, only:%i[destroy] do
+  resources :orders, only: %i[destroy] do
     collection do
-        get :cart
+      get :cart
+      delete :empty_cart
+    end
+    member do
+        patch :add_item
+        patch :less_item
     end
     
   end

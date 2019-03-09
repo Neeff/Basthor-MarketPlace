@@ -13,7 +13,7 @@
         <% @orders.each do |order| %>
                         
 
-                    <tr>
+                    <tr id="<%= order.id%>">
                       <td data-th="Product">
                         <div class="row">
                           <div class="col-sm-2 hidden-xs"><%= image_tag(order.product.image.variant(resize: '150x150'),class:"img-responsive") %></div>
@@ -24,22 +24,33 @@
                       </td>
                       <td data-th="Price"><%= order.product.price %></td>
                       <td data-th="Quantity">
-                        <span class="badge badge-warning"><%= order.quantity%></span>
+                        <%= link_to(less_item_order_path(order), method: :patch,data:{remote: true}) do%>
+                          <i class="fas fa-minus-square"></i>
+                        <% end %>
+                        
+                        <span class="badge badge-warning" id="item_quantity"><%= order.quantity%> </span><%= link_to(add_item_order_path(order), method: :patch, data: {remote: true}) do %>
+                          <i class="fas fa-plus-square"></i>
+                        <% end %>
                       </td>
                       <td data-th="Subtotal" class="text-center"><%= order.quantity * order.product.price%></td>
                       <td class="actions" data-th="">
-                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        <%= link_to(order_path(order), data:{remote: true, confirm: 'Estas Seguro?'}, method: :delete, class:'btn btn-danger') do %>
+                        <i class="fas fa-trash-alt"></i>
+                      <% end %>
                       </td>
                     </tr>
                     <% end %>
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-                      <td colspan="2" class="hidden-xs"></td>
-                      <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                      <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                      <td><a href="<%= :back %>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                      <td><%= link_to(empty_cart_orders_path,method: :delete, class: 'btn btn-danger') do%>
+                        <i class="fas fa-backspace"></i>
+                      <% end %>
+                      </td>
+                      <td colspan="1" class="hidden-xs"></td>
+                      <td class="hidden-xs text-center"><strong id="total"><i class="fas fa-money-bill-alt"></i> <%= @total %></strong></td>
+                      <td><a href="#" class="btn btn-success btn-block"><i class="fab fa-paypal"></i></a></td>
                     </tr>
                   </tfoot>
                 </table>
