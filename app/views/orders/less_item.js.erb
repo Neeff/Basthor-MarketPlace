@@ -1,2 +1,2 @@
-$('#item_quantity').html("<%= @order.quantity%>")
+$('#item_quantity_<%=@order.id%>').html("<%= @order.quantity%>");
 $('#total').html("<i class='fas fa-money-bill-alt'></i> <%= @total%>");

@@ -23,6 +23,12 @@ Rails.application.routes.draw do
       resources :orders, only: %i[create]
     end
   end
+  resources :billings, only: [] do
+    collection do
+      post 'pre_pay'
+      get 'execute'
+    end
+  end
   devise_for :users
   root 'shops#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

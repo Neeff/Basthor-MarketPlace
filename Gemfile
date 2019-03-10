@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'active_storage_drag_and_drop'
-
+gem 'paypal-sdk-rest'
 gem 'image_processing', '~> 1.2'
 gem 'remotipart'
 

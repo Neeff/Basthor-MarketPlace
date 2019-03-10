@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_one :shop
   has_many :orders
   has_many :products, through: :orders
+  def cart
+    orders.where(paid: false)
+  end
 end

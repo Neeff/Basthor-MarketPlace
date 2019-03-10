@@ -1,3 +1,3 @@
 $('#<%= @order.id%>').fadeOut();
-$('#cart').text('<%= current_user.orders.count%>');
+$('#cart').text('<%= current_user.cart.count%>');
 $('#total').html("<i class='fas fa-money-bill-alt'></i> <%= @total%>");
