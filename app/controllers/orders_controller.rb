@@ -1,4 +1,10 @@
 class OrdersController < ApplicationController
+  def index
+    @orders_provider = current_user.shop.orders.where(paid:true).where(dispached: false).order('created_at DESC').to_a
+    @orders_provider.group_by { |order| order.user.id}
+    #@orders_provider = current_user.shop.orders.where(paid: true).order('created_at DESC')
+  end
+
   def create
     @order = Order.find_or_initialize_by(
       product_id: params[:product_id],
@@ -33,7 +39,7 @@ class OrdersController < ApplicationController
   def add_item
     @orders = current_user.orders.where(paid: false)
     @order = Order.find(params[:id])
-    @order.quantity += 1 
+    @order.quantity += 1
     @order.save if @order.changed?
     @total = @orders.map { |order| order.price * order.quantity }.sum
     respond_to :js
@@ -46,5 +52,18 @@ class OrdersController < ApplicationController
     @order.save if @order.changed?
     @total = @orders.map { |order| order.price * order.quantity }.sum
     respond_to :js
+  end
+
+  def dispached
+    @orders_provider = current_user.shop.orders.where(paid: true).where(dispached: false).order('created_at DESC').to_a
+    @orders_provider.group_by { |order| order.user.id }
+    orders_per_user = @orders_provider.count
+    puts orders_per_user
+    @order = Order.find(params[:id])
+    @order.update(dispached: true)
+    if orders_per_user == 1
+      puts 'Orden de compra del usuario ha sido despachada en su totalidad'
+      #codigo de mail aqui!
+    end
   end
 end

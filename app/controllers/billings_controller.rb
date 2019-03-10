@@ -46,6 +46,12 @@ class BillingsController < ApplicationController
                     )
         orders =  current_user.orders.where(paid: false)
         orders.update_all(paid: true, billing_id: billing.id)
+        orders_paid_current_user = current_user.orders.where(paid: true).where(type_order: 'last order').pluck(:product_id, :quantity)
+        orders_paid_current_user.each do |pq|
+          product = Product.find(pq.first)
+          product.update(stock: (product.stock - pq.second))
+        end
+        current_user.orders.where(paid: true).update_all(type_order: 'old order')
         redirect_to root_path, notice: 'el Pago se genero con exito!'
         else
           render plain: ':('

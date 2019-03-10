@@ -5,10 +5,10 @@
           <li class="list-group-item"><%= link_to "Eliminar Tienda",shop_path(@shop) ,method: :delete, data:{ remote: true , confirm: 'Estas Seguro!?'} %></li>
           <li class="list-group-item"><%= link_to "Crear Producto",new_shop_product_path(@shop), data:{ remote: true} %></li>
          <% end %>
-        
+
       </ul>
                 <div class="row">
-            
+
                   <div class="col-lg-3">
                       <%= image_tag(@shop.images.first.variant(resize: '200x200')) %>
                     <h1 class="my-4" id="shop_name"><%= @shop.name%></h1>
@@ -22,16 +22,16 @@
                       <%= f.label :Buscar_Producto %>
                       <%= f.text_field :search, class: 'form-control' %>
                     <% end %>
-            
+
                   </div>
                   <!-- /.col-lg-3 -->
-            
+
                   <div class="col-lg-9">
 
                       <div id="image">
                           <%= image_tag(@shop.images.second.variant(resize: '1000x400'),class: 'd-block img-fluid') %>
                         </div>
-            
+
                     <!--<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                       <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -58,7 +58,7 @@
                         <span class="sr-only">Next</span>
                       </a>
                     </div>-->
-            
+
                     <div class="row" id='products'>
                           <% @products.each do |product| %>
                               <div class="col-lg-4 col-md-6 mb-4" id="<%= product.id%>">
@@ -74,30 +74,33 @@
                                     <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
 
                                     <% else %>
-                                    <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
-                                  
+                                      <% if product.stock == 0 %>
+                                                <button type="button" class="btn btn-info" name="button">Producto Agotado</button>
+                                          <%else %>
+                                            <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
+                                            <%end%>
                                     <% end %>
-                                     
-                                         
+
+
                                 </div>
                                 <div class="card-footer">
                                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                 </div>
                               </div>
                             </div>
-                        
-                      
+
+
                       <% end %>
-                  
+
                     </div>
                     <!-- /.row -->
-            
+
                   </div>
                   <!-- /.col-lg-9 -->
-            
+
                 </div>
                 <!-- /.row -->
-            
+
               </div>
               <!-- /.container -->
 
@@ -110,7 +113,7 @@
                       url: "<%= search_shop_products_path(@shop)%>",
                       data: {search: $('#search').val()},
                       success: function (response) {
-                              
+
                       }
                 });
                   });

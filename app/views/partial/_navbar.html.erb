@@ -12,9 +12,22 @@
                 </a>
               </li>
               <% if user_signed_in? %>
-              <li class="nav-item">
-                  <a class="nav-link" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion</a>
-                </li>
+                <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="far fa-user"></i>
+       </a>
+       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <%if current_user.client?%>
+         <a class="dropdown-item" href="#">Mis Pedidos <i class="fas fa-shopping-bag"></i></a>
+         <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
+         <% else %>
+         <a class="dropdown-item" href="<%= orders_path%>">Ordenes <i class="fas fa-truck"></i></a>
+         <a class="dropdown-item" href="#">DashBoard <i class="fas fa-chart-line"></i></a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
+         <% end %>
+       </div>
+     </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%= cart_orders_path%>"><i class="fas fa-shopping-cart"></i> <span class="badge badge-warning" id="cart"><%= current_user.cart.count %></span></a>
                   </li>
@@ -25,7 +38,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="<%=new_user_registration_path%>">Crear Cuenta</a>
                 </li>
-                
+
               <% end %>
             </ul>
           </div>
