@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders_provider = current_user.shop.orders.where(paid:true).where(dispached: false).order('created_at DESC').to_a
-    @orders_provider.group_by { |order| order.user.id}
+    @orders_provider = current_user.shop.orders.where(paid:true).where(dispached: false).order('created_at DESC')
     #@orders_provider = current_user.shop.orders.where(paid: true).order('created_at DESC')
   end
 
@@ -55,15 +54,20 @@ class OrdersController < ApplicationController
   end
 
   def dispached
-    @orders_provider = current_user.shop.orders.where(paid: true).where(dispached: false).order('created_at DESC').to_a
-    @orders_provider.group_by { |order| order.user.id }
-    orders_per_user = @orders_provider.count
-    puts orders_per_user
+    @orders_provider = current_user.shop.orders.where(paid: true).where(dispached: false).order('created_at DESC')
     @order = Order.find(params[:id])
+    user = User.find_by(id: @order.user_id)
     @order.update(dispached: true)
-    if orders_per_user == 1
+    orders_per_user = User.find(user.id).orders.where(paid: true).where(dispached: false).count
+    puts orders_per_user
+    if orders_per_user == 0
       puts 'Orden de compra del usuario ha sido despachada en su totalidad'
-      #codigo de mail aqui!
+      UserMailer.new_pack_off(user, @orders_provider).deliver
     end
+    redirect_to orders_path
+  end
+
+  def user
+    @orders_user = current_user.orders.where(paid: true)
   end
 end

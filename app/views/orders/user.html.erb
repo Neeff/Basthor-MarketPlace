@@ -1,0 +1,33 @@
+<div class="container">
+                <table id="cart" class="table table-hover table-condensed">
+                  <thead>
+                    <tr>
+                      <th>PayID</th>
+                      <th style="width:50%">Producto</th>
+                      <th></th>
+                      <th style="width:10%">Precio</th>
+                      <th style="width:8%">Cantidad</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+        <% @orders_user.each do |order| %>
+                        
+
+                    <tr id="<%= order.id%>">
+                            <td><span class="badge badge-warning"><%= order.billing.code %></span></td>
+                      <td data-th="Product">
+                        <div class="row">
+                          <div class="col-sm-4 hidden-xs"><%= image_tag(order.product.image.variant(resize: '150x150'),class:"img-responsive") %></div>
+                          <div class="col-sm-8">
+                            <h6 class="nomargin"><%= order.product.name %></h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td data-th="Quantity">                        
+                        <span class="badge badge-warning" id="item_quantity_<%= order.id%>"><%= order.quantity%> </span>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>

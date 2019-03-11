@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :orders, only: %i[index destroy] do
     collection do
       get :cart
+      get :user
       delete :empty_cart
     end
     member do
