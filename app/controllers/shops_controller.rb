@@ -58,9 +58,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  def cart 
-  end
-
   private
 
   def set_shop

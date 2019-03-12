@@ -14,5 +14,7 @@
 //= requiere jquery.remotipart
 //= require activestorage
 //= require turbolinks
+//= require Chart.bundle
+//= require chartkick
 //= require active_storage_drag_and_drop
 //= require_tree .

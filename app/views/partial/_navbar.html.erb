@@ -22,7 +22,7 @@
          <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
          <% else %>
          <a class="dropdown-item" href="<%= orders_path%>">Ordenes <i class="fas fa-truck"></i></a>
-         <a class="dropdown-item" href="#">DashBoard <i class="fas fa-chart-line"></i></a>
+         <a class="dropdown-item" href="<%=  dashboard_orders_path %>">DashBoard <i class="fas fa-chart-line"></i></a>
          <div class="dropdown-divider"></div>
          <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
          <% end %>

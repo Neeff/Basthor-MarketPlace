@@ -1,0 +1,33 @@
+<h1><span class="badge badge-warning">Dashboard</span></h1>
+<br>
+<br>
+<div class="row">
+  <div class="col col-md-8">
+<h2>Cantidad de Ordenes En el Tiempo</h2>
+<%= line_chart current_user.shop.orders.paid_and_dispached.group_by_day(:created_at).count %>
+  </div>
+  <div class="col col-md-4">
+                <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Semana</th>
+                                    <th scope="col">Monto</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                 <% @orders.each do |key, value| %>
+                                  <tr>
+                                    <th scope="row"><%= key %></th>
+                                    <th><h4><span class="badge badge-success"><%= value.map{|order| [order.price * order.quantity]}.flatten(2).sum%></span></h4></th>
+                                  </tr>
+                                  <% end %>
+                                </tbody>
+                        </table>
+  </div>
+</div>
+<br>
+<div class="row">
+        <div class="col">
+          <%= bar_chart current_user.shop.orders.paid_and_dispached.group_by_week(:created_at).count %>
+        </div>
+</div>

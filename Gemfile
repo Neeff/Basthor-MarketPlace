@@ -38,6 +38,9 @@ gem 'paypal-sdk-rest'
 gem 'image_processing', '~> 1.2'
 gem 'remotipart'
 gem 'geocoder'
+gem "chartkick"
+gem 'groupdate'
+gem 'faker'
 
 gem 'cancancan', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb

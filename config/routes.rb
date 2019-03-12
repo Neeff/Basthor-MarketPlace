@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get :cart
       get :user
+      get :dashboard
       delete :empty_cart
     end
     member do
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
     collection do
       get :search
       get :cart
-      get :dashboard
     end
     resources :products do
       collection do
