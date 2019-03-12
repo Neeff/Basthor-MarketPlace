@@ -37,6 +37,7 @@ gem 'active_storage_drag_and_drop'
 gem 'paypal-sdk-rest'
 gem 'image_processing', '~> 1.2'
 gem 'remotipart'
+gem 'geocoder'
 
 gem 'cancancan', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb

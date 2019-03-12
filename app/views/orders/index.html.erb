@@ -1,37 +1,28 @@
 <div class="row">
-  <div class="col col-md-12">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">User ID</th>
+      <th>PayID</th>
+      <th scope="col">Productos</th>
+      <th scope="col"></th>
 
-      <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th>user_id</th>
-              <th>producto</th>
-              <th>cantidad</th>
-              <th>Pagada</th>
-              <th scope="col">despachada</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @orders_provider.each do |order| %>
-            
-            <tr>
-              <th><%= order.user.id %></th>
-             
-              <th scope="row"><%= order.product.name %></th>
-              <th><%= order.quantity %></th>
-              <th><span class="badge badge-success"><%= order.paid %></span></th>
-              <td><span class="badge badge-danger"><%= order.dispached %></span></td>
-              <td><%= link_to "Marcar como Despachado", dispached_order_path(order.id), method: :patch, class:"btn btn-warning" %></td>
-            </tr>
-            
-            <% end %>
-          </tbody>
-        </table>
-
-  </div>
-
-  </div>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders_per_user.each do |key, value| %>
+    
+    <tr>
+      <th scope="row"><%= key %></th>
+      <th><span class="badge badge-success"><%= value.map{|order| order.billing.code}.first %></span></th>
+      <td>
+          <% value.map{|order| [order.product.name,order.quantity]}.each do |product|  %>
+        <span class="badge badge-warning"><%= product.first %></span> <span class= "badge badge-info"><%= product.second %></span><br>
+        <%end %>
+    </td>
+    <td><%= link_to "Marcar Como despachado", dispached_order_path(key), method: :patch, class: 'btn btn-warning' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
-
-

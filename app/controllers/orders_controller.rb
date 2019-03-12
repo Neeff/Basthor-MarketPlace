@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   def index
-    @orders_provider = current_user.shop.orders.where(paid:true).where(dispached: false).order('created_at DESC')
+    #@orders_provider = current_user.shop.orders.where(paid:true).where(dispached: false).order('created_at DESC')
     #@orders_provider = current_user.shop.orders.where(paid: true).order('created_at DESC')
-  end
+    @orders_per_user = current_user.shop.orders.where(paid: true).where(dispached: false).group_by{|order| order.user.id}
+    end
+
 
   def create
     @order = Order.find_or_initialize_by(
@@ -54,16 +56,13 @@ class OrdersController < ApplicationController
   end
 
   def dispached
-    @orders_provider = current_user.shop.orders.where(paid: true).where(dispached: false).order('created_at DESC')
-    @order = Order.find(params[:id])
-    user = User.find_by(id: @order.user_id)
-    @order.update(dispached: true)
-    orders_per_user = User.find(user.id).orders.where(paid: true).where(dispached: false).count
-    puts orders_per_user
-    if orders_per_user == 0
-      puts 'Orden de compra del usuario ha sido despachada en su totalidad'
-      UserMailer.new_pack_off(user, @orders_provider).deliver
-    end
+    #@orders_provider = current_user.shop.orders.where(paid: true).where(dispached: false).order('created_at DESC')
+    #@order = Order.find(params[:id])
+    user = User.find(params[:id])
+    orders_per_user = user.orders.where(paid: true).where(dispached: false)
+    orders_per_user.update_all(dispached: true)
+    puts 'Orden de compra del usuario ha sido despachada en su totalidad'
+    UserMailer.new_pack_off(user, orders_per_user).deliver
     redirect_to orders_path
   end
 
