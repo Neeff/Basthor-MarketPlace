@@ -15,7 +15,7 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params)
     @shop.user = current_user
     if @shop.save
-      respond_to :js
+      redirect_to root_path, alert: 'askldjaksdjakj'
     else
       redirect_to root_path, alert: 'Error Tienda no Creada Intente Nuevamente'
     end

@@ -63,6 +63,7 @@ class OrdersController < ApplicationController
 
   def user
     @orders_user = current_user.orders.where(paid: true)
+    # estado de la orden... cambiar color del tr
   end
   def dashboard
     @orders = current_user.shop.orders.where(paid: true).where(dispached: true).group_by_week{|order| order.created_at}

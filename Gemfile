@@ -41,6 +41,7 @@ gem 'geocoder'
 gem "chartkick"
 gem 'groupdate'
 gem 'faker'
+gem 'activeadmin'
 
 gem 'cancancan', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb

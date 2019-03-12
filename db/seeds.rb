@@ -18,3 +18,4 @@ Order.destroy_all
   price: rand(2.0..5.0),
   created_at: Faker::Number.number(1).to_i.day.ago)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

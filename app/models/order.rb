@@ -7,4 +7,8 @@ class Order < ApplicationRecord
   def self.paid_and_dispached
     where(paid: true).where(dispached: true)
   end
+
+  def self.created_by_day
+  	group_by_day(:created_at).count
+  end
 end
