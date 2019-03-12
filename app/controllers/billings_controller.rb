@@ -40,6 +40,7 @@ class BillingsController < ApplicationController
         billing = Billing.create(
                             user: current_user,
                             code: paypal_payment.id,
+                            address: current_user.address,
                             payment_method: 'paypal',
                             amount: total.to_i,
                             currency: 'USD'

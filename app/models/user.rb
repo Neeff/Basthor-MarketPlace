@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_one :shop
   has_many :orders
   has_many :products, through: :orders
+  geocoded_by :address
+  after_validation :geocode
   def cart
     orders.where(paid: false)
   end

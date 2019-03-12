@@ -1,10 +1,7 @@
 class OrdersController < ApplicationController
   def index
-    #@orders_provider = current_user.shop.orders.where(paid:true).where(dispached: false).order('created_at DESC')
-    #@orders_provider = current_user.shop.orders.where(paid: true).order('created_at DESC')
     @orders_per_user = current_user.shop.orders.where(paid: true).where(dispached: false).group_by{|order| order.user.id}
-    end
-
+  end
 
   def create
     @order = Order.find_or_initialize_by(
@@ -56,8 +53,6 @@ class OrdersController < ApplicationController
   end
 
   def dispached
-    #@orders_provider = current_user.shop.orders.where(paid: true).where(dispached: false).order('created_at DESC')
-    #@order = Order.find(params[:id])
     user = User.find(params[:id])
     orders_per_user = user.orders.where(paid: true).where(dispached: false)
     orders_per_user.update_all(dispached: true)

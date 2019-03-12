@@ -4,6 +4,7 @@
     <tr>
       <th scope="col">User ID</th>
       <th>PayID</th>
+      <th>Locacion de despacho</th>
       <th scope="col">Productos</th>
       <th scope="col"></th>
 
@@ -15,7 +16,9 @@
     <tr>
       <th scope="row"><%= key %></th>
       <th><span class="badge badge-success"><%= value.map{|order| order.billing.code}.first %></span></th>
-      <td>
+      <th><span class="badge badge-info"><%= value.map{|order| order.billing.address}.first %></span></th>
+      <td> 
+
           <% value.map{|order| [order.product.name,order.quantity]}.each do |product|  %>
         <span class="badge badge-warning"><%= product.first %></span> <span class= "badge badge-info"><%= product.second %></span><br>
         <%end %>

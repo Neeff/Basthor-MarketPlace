@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'locations/find_address'
   resources :categories, only: %i[show]
   resources :orders, only: %i[index destroy] do
     collection do
@@ -7,11 +8,10 @@ Rails.application.routes.draw do
       delete :empty_cart
     end
     member do
-        patch :add_item
-        patch :less_item
-        patch :dispached
+      patch :add_item
+      patch :less_item
+      patch :dispached
     end
-
   end
   resources :shops do
     collection do
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users
+  get 'locations/find_address'
   root 'shops#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
