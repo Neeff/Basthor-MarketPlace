@@ -1,7 +1,11 @@
 <div id="<%= shop.id %>">
 <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <a href="<%= shop_path(shop)%>"><%= image_tag(shop.images.first.variant(resize: '1000x800'),class: 'card-img-top') %></a>
+          <a href="<%= shop_path(shop)%>">
+            <% if shop.images.attached? %>
+              <%= image_tag(shop.images.first)%>
+            <% end %>
+          </a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="#"><%= shop.name %></a>
