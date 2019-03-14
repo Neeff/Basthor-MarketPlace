@@ -1,34 +1,114 @@
+<div class="container">
 <h1><span class="badge badge-warning">Dashboard</span></h1>
 <br>
 <br>
 <div class="row">
-  <div class="col col-md-8">
-<h2>Cantidad de Ordenes En el Tiempo</h2>
-<%= line_chart current_user.shop.orders.paid_and_dispached.group_by_day(:created_at).count %>
-  </div>
-  <div class="col col-md-4">
-                <table class="table">
-                                <thead class="thead-dark">
-                                  <tr>
-                                    <th scope="col">Semana</th>
-                                    <th scope="col">Monto</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                 <% @orders.each do |key, value| %>
-                                  <tr>
-                                    <th scope="row"><%= key %></th>
-                                    <th><h4><span class="badge badge-success"><%= value.map{|order| [order.price * order.quantity]}.flatten(2).sum%></span></h4></th>
-                                  </tr>
-                                  <% end %>
-                                </tbody>
-                        </table>
-  </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mis Productos</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @count_products_shop %></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-box fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ordenes Recibidas</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @orders_shop %></div>
+              </div>
+              <div class="col-auto">
+                  <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Productos Despachados</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @orders_dispached_shop %></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-truck fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Productos Por Despachar</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @orders_not_dispached_shop  %></div>
+                  </div>
+                  <div class="col-auto">
+                      <i class="fas fa-shipping-fast fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+<div class="row">
+    <!-- Area Chart -->
+    <div class="card shadow col-md-8">
+        <div class="card-body">
+          <div class="chart-area">
+              <%= line_chart current_user.shop.orders.paid_and_dispached.group_by_day(:created_at).count %>
+          </div>
+          <hr>
+          Cantidad de Ordenes Por dia 
+        </div>
+      </div>
+      <div class="col col-md-4">
+          <table class="table">
+             <thead class="thead-dark">
+                <tr>
+                 <th scope="col">Semana</th>
+                   <th scope="col">Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+               <% @orders.each do |key, value| %>
+                  <tr>
+                    <th scope="row"><%= key %></th>
+                      <th><h4><span class="badge badge-success"><%= value.map{|order| [order.price * order.quantity]}.flatten(2).sum%></span></h4></th>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+
+    </div>
 </div>
 <br>
-<h2>Ordenes Por Semana</h2>
 <div class="row">
-        <div class="col">
-          <%= bar_chart current_user.shop.orders.paid_and_dispached.group_by_week(:created_at).count %>
+    <!-- Area Chart -->
+    <div class="card shadow col-md-8">
+        <div class="card-body">
+          <div class="chart-area">
+              <%= bar_chart current_user.shop.orders.paid_and_dispached.group_by_week(:created_at).count %>
+          </div>
+          <hr>
+          Ordenes Por Semana
         </div>
+      </div>
+</div>
+<br>
 </div>

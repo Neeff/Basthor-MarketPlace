@@ -60,6 +60,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search_range_price
+    @range = params[:search]
+    @products = Product.where('price <= ?',"#{@range}")
+    respond_to :js
+  end
+
   private
 
   def set_product

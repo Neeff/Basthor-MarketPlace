@@ -1,24 +1,60 @@
-<div class="col-lg-4 col-md-6 mb-4" id="<%= product.id%>">
-  <div class="card h-100">
-    <a href="<%= shop_product_path(product.shop.id, product)%>"><%= image_tag(product.image.variant(resize: '800x800'),class: "card-img-top") %></a>
+<article class="card card-product" id="<%= product.id%>">
     <div class="card-body">
-      <h4 class="card-title">
-        <a href="#"><%= product.name%></a>
-      </h4>
-      <h5><span class="badge badge-success">$<%=product.price%></span><span class="badge badge-warning">Stock:<%= product.stock %></span></h5>
-      <% if can? :update, Product %>
-      <%= link_to  "Editar", edit_shop_product_path(product.shop,product), class: 'btn btn-info', data:{remote: true}  %>
-      <%= link_to  "Eliminar",shop_product_path(product.shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
+    <div class="row">
+      <aside class="col-sm-3">
+        <div class="img-wrap"><a href="<%= shop_product_path(product.shop.id, product)%>"><%= image_tag(product.image.variant(resize: '800x800'),class: "card-img-top") %></a></div>
+      </aside> <!-- col.// -->
+      <article class="col-sm-6">
+          <h4 class="title"><%= product.name %></h4>
+          <div class="rating-wrap  mb-2">
+            <ul class="rating-stars">
+              <li style="width:80%" class="stars-active"> 
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> 
+              </li>
+              <li>
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> 
+              </li>
+            </ul>
+          </div> <!-- rating-wrap.// -->
+          <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
+          <dl class="dlist-align">
+          </dl>  <!-- item-property-hor .// -->
+          <dl class="dlist-align">
+              <dt>Categorias</dt>
+                <% product.categories.each do |category| %>
+                <dd><span class="badge badge-success"><%= category.name %></span></dd>
+                <% end %>
+                </dl>  <!-- item-property-hor .// -->
+            
+        
+      </article> <!-- col.// -->
+      <aside class="col-sm-3 border-left">
+        <div class="action-wrap">
+          <div class="price-wrap h4">
+            <span class="price"><%= product.price %></span>	
 
-      <% else %>
-        <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
-    
-      <% end %>
-       
-           
-  </div>
-  <div class="card-footer">
-    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-  </div>
-</div>
-</div>
+          </div> <!-- info-price-detail // -->
+          <p class="text-success">Free shipping</p>
+          <br>
+          <p>
+              <% if can? :update, Product %>
+              <%= link_to  "Editar", edit_shop_product_path(product.shop.id,product), class: 'btn btn-info', data:{remote: true}  %>
+              <%= link_to  "Eliminar",shop_product_path(product.shop.id, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
+
+              <% else %>
+                <% if product.stock == 0 %>
+                          <button type="button" class="btn btn-info" name="button">Producto Agotado</button>
+                    <%else %>
+                      <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
+                      <%end%>
+              <% end %>
+          </p>
+        </div> <!-- action-wrap.// -->
+      </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+    </div> <!-- card-body .// -->
+  </article> <!-- card product .// -->

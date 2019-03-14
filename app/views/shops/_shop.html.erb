@@ -1,20 +1,16 @@
-<div id="<%= shop.id %>">
-<div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="<%= shop_path(shop)%>">
-            <% if shop.images.attached? %>
-              <%= image_tag(shop.images.first)%>
-            <% end %>
-          </a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#"><%= shop.name %></a>
-            </h4>
-            <p class="card-text"><%= shop.description %></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
+<div class="col-md-3" id="<%= shop.id%>">
+    <figure class="card card-product">
+      <div class="img-wrap"> 
+          <% if shop.images.attached? %>
+          <a href="<%= shop_path(shop)%>"><%= image_tag(shop.images.second.variant(resize: '400x266'), class: 'img-top')%></a>
+        <% end %>
+        <a class="btn-overlay" href="#">
       </div>
-</div>
+      <figcaption class="info-wrap">
+        <a href="#" class="title"><%= shop.name %></a>
+        <div class="action-wrap">
+          </div> <!-- price-wrap.// -->
+        </div> <!-- action-wrap -->
+      </figcaption>
+    </figure> <!-- card // -->
+  </div> <!-- col // -->

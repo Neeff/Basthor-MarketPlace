@@ -67,7 +67,10 @@ class OrdersController < ApplicationController
   end
   def dashboard
     @orders = current_user.shop.orders.where(paid: true).where(dispached: true).group_by_week{|order| order.created_at}
-    
+    @count_products_shop = current_user.shop.products.count
+    @orders_shop = current_user.shop.orders.count
+    @orders_dispached_shop = current_user.shop.orders.where(paid: true).where(dispached: true).count
+    @orders_not_dispached_shop = current_user.shop.orders.where(paid: true).where(dispached: false).count
   end
 
 end

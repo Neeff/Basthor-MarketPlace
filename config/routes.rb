@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :products do
       collection do
         get :search
+        get :search_range_price
       end
       resources :orders, only: %i[create]
     end

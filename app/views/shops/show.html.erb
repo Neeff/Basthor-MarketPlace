@@ -1,4 +1,10 @@
 <div class="container">
+    <section class="section-pagetop bg-warning">
+        <div class="container clearfix">
+          <%= image_tag(@shop.images.second.variant(resize: '200x200'),class: 'd-block img-fluid') %>
+          <h2><span class="badge badge-success"><%= @shop.name %></span></h2>
+        </div> <!-- container //  -->
+        </section>
     <ul class="list-group list-group-horizontal">
         <% if current_user.provider? %>
           <li class="list-group-item"><%= link_to "Editar Tienda", edit_shop_path(@shop), data:{ remote: true } %></li>
@@ -10,27 +16,66 @@
                 <div class="row">
 
                   <div class="col-lg-3">
-                      <%= image_tag(@shop.images.first.variant(resize: '200x200')) %>
-                    <h1 class="my-4" id="shop_name"><%= @shop.name%></h1>
-                    <div class="list-group">
-                      <a href="#" class="list-group-item">Category 1</a>
-                      <a href="#" class="list-group-item">Category 2</a>
-                      <a href="#" class="list-group-item">Category 3</a>
-                    </div>
-
-                    <%= form_with(url: search_shop_products_path(@shop)) do |f| %>
-                      <%= f.label :Buscar_Producto %>
-                      <%= f.text_field :search, class: 'form-control' %>
-                    <% end %>
+                        <div class="card card-filter">
+                          <article class="card-group-item">
+                            <header class="card-header">
+                              <a class="" aria-expanded="true" href="#" data-toggle="collapse" data-target="#collapse22">
+                                <i class="icon-action fa fa-chevron-down"></i>
+                                <h6 class="title"> Por Nombre</h6>
+                              </a>
+                            </header>
+                            <div style="" class="filter-content collapse show" id="collapse22">
+                              <div class="card-body">
+                                <form class="pb-3">
+                                <div class="input-group">
+                                  <input class="form-control" placeholder="Search" id="search" type="text">
+                                  <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                                  </div>
+                                </div>
+                                </form>
+                        
+                                <ul class="list-unstyled list-lg">
+                                   <% @categories.each do |category| %>
+                                   <li><a href="<%=category_path(category) %>"><%= category.name %> <span class="float-right badge badge-warning round"><%= category.products.count %></span> </a></li>
+                                  <% end %>
+                                </ul>  
+                              </div> <!-- card-body.// -->
+                            </div> <!-- collapse .// -->
+                          </article> <!-- card-group-item.// -->
+                          <article class="card-group-item">
+                            <header class="card-header">
+                              <a href="#" data-toggle="collapse" data-target="#collapse33">
+                                <i class="icon-action fa fa-chevron-down"></i>
+                                <h6 class="title">By Price  </h6>
+                              </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse33">
+                              <div class="card-body">
+                                <input type="range" class="custom-range" min="0" max="10000" name="" id="range_price">
+                                <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label>Min</label>
+                                  <input class="form-control" placeholder="$0" id="min">
+                                </div>
+                                <div class="form-group text-right col-md-6">
+                                  <label>Max</label>
+                                  <input class="form-control" placeholder="$1,0000" id="max">
+                                </div>
+                                </div> <!-- form-row.// -->
+                              </div> <!-- card-body.// -->
+                            </div> <!-- collapse .// -->
+                          </article> <!-- card-group-item.// -->
+                        </div> <!-- card.// -->
+                        
+                      
 
                   </div>
                   <!-- /.col-lg-3 -->
 
                   <div class="col-lg-9">
 
-                      <div id="image">
-                          <%= image_tag(@shop.images.second.variant(resize: '1000x400'),class: 'd-block img-fluid') %>
-                        </div>
+                     
 
                     <!--<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                       <ol class="carousel-indicators">
@@ -58,36 +103,68 @@
                         <span class="sr-only">Next</span>
                       </a>
                     </div>-->
-
+                    <br><br>
                     <div class="row" id='products'>
                           <% @products.each do |product| %>
-                              <div class="col-lg-4 col-md-6 mb-4" id="<%= product.id%>">
-                                <div class="card h-100">
-                                  <a href="<%= shop_product_path(@shop, product)%>"><%= image_tag(product.image.variant(resize: '800x800'),class: "card-img-top") %></a>
-                                  <div class="card-body">
-                                    <h4 class="card-title">
-                                      <a href="#"><%= product.name%></a>
-                                    </h4>
-                                    <h5><span class="badge badge-success">$<%=product.price%></span><span class="badge badge-warning">Stock:<%= product.stock %></span></h5>
-                                    <% if can? :update, Product %>
-                                    <%= link_to  "Editar", edit_shop_product_path(@shop,product), class: 'btn btn-info', data:{remote: true}  %>
-                                    <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
-
-                                    <% else %>
-                                      <% if product.stock == 0 %>
-                                                <button type="button" class="btn btn-info" name="button">Producto Agotado</button>
-                                          <%else %>
-                                            <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
-                                            <%end%>
-                                    <% end %>
-
-
-                                </div>
-                                <div class="card-footer">
-                                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                              </div>
-                            </div>
+                          <article class="card card-product" id="<%= product.id%>">
+                              <div class="card-body">
+                              <div class="row">
+                                <aside class="col-sm-3">
+                                  <div class="img-wrap"><a href="<%= shop_product_path(@shop, product)%>"><%= image_tag(product.image.variant(resize: '800x800'),class: "card-img-top") %></a></div>
+                                </aside> <!-- col.// -->
+                                <article class="col-sm-6">
+                                    <h4 class="title"><%= product.name %></h4>
+                                    <div class="rating-wrap  mb-2">
+                                      <ul class="rating-stars">
+                                        <li style="width:80%" class="stars-active"> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                          <i class="fa fa-star"></i> 
+                                        </li>
+                                        <li>
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                          <i class="fa fa-star"></i> 
+                                        </li>
+                                      </ul>
+                                    </div> <!-- rating-wrap.// -->
+                                    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
+                                    <dl class="dlist-align">
+                                    </dl>  <!-- item-property-hor .// -->
+                                    <dl class="dlist-align">
+                                      <dt>Categorias</dt>
+                                        <% product.categories.each do |category| %>
+                                        <dd><span class="badge badge-success"><%= category.name %></span></dd>
+                                        <% end %>
+                                        </dl>  <!-- item-property-hor .// -->
+                                  
+                                </article> <!-- col.// -->
+                                <aside class="col-sm-3 border-left">
+                                  <div class="action-wrap">
+                                    <div class="price-wrap h4">
+                                      <span class="price"><%= product.price %></span>	
+                 
+                                    </div> <!-- info-price-detail // -->
+                                    <p class="text-success">Free shipping</p>
+                                    <br>
+                                    <p>
+                                        <% if can? :update, Product %>
+                                        <%= link_to  "Editar", edit_shop_product_path(@shop,product), class: 'btn btn-info', data:{remote: true}  %>
+                                        <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{remote: true}, method: :delete %>
+          
+                                        <% else %>
+                                          <% if product.stock == 0 %>
+                                                    <button type="button" class="btn btn-info" name="button">Producto Agotado</button>
+                                              <%else %>
+                                                <%= link_to "Agregar al Carrito",shop_product_orders_path(product.shop, product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
+                                                <%end%>
+                                        <% end %>
+                                    </p>
+                                  </div> <!-- action-wrap.// -->
+                                </aside> <!-- col.// -->
+                              </div> <!-- row.// -->
+                              </div> <!-- card-body .// -->
+                            </article> <!-- card product .// -->
 
 
                       <% end %>
@@ -118,3 +195,20 @@
                 });
                   });
                 </script>
+
+                <script>
+                    $("#range_price").on('mouseup',function () {                    
+                    
+                      $.ajax({
+                        type: "GET",
+                        url: "<%= search_range_price_shop_products_path(@shop) %>",
+                        data: {search: $('#range_price').val()},
+                        success: function (response) {
+                            console.log(response)
+                        }
+                  });
+                   });
+
+                </script>
+
+                

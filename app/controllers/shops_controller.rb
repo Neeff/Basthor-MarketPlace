@@ -24,6 +24,7 @@ class ShopsController < ApplicationController
   def show
     @products = Product.where(shop_id: @shop.id)
     @order = Order.new
+    @categories = Category.all
   end
   
   def edit
