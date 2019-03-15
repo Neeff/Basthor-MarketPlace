@@ -53,7 +53,7 @@ class BillingsController < ApplicationController
           product.update(stock: (product.stock - pq.second))
         end
         current_user.orders.where(paid: true).update_all(type_order: 'old order')
-        redirect_to root_path, notice: 'el Pago se genero con exito!'
+        redirect_to user_orders_path, notice: 'el Pago se genero con exito!'
         else
           render plain: ':('
       end

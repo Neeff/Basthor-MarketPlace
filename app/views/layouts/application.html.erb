@@ -16,6 +16,14 @@
 
   <body>
     <%= render  "partial/navbar" %>
+    <div id="alerts">
+    <% if notice.present? %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+  <% if alert.present? %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+    </div>
         <%= yield %>
     <%= render  "partial/footer" %>
 

@@ -1,4 +1,6 @@
+<div class="container">
 <div class="row">
+<div class="col col-md-12">
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -12,11 +14,11 @@
   </thead>
   <tbody>
     <% @orders_per_user.each do |key, value| %>
-    
+     
     <tr>
       <th scope="row"><%= key %></th>
       <th><span class="badge badge-success"><%= value.map{|order| order.billing.code}.first %></span></th>
-      <th><span class="badge badge-info"><%= value.map{|order| order.billing.address}.first %></span></th>
+      <th><%= value.map{|order| order.billing.address}.first %></th>
       <td> 
 
           <% value.map{|order| [order.product.name,order.quantity]}.each do |product|  %>
@@ -28,4 +30,6 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
 </div>

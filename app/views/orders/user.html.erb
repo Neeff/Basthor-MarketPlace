@@ -4,10 +4,9 @@
                     <tr>
                       <th>PayID</th>
                       <th style="width:50%">Producto</th>
-                      <th></th>
-                      <th style="width:10%">Precio</th>
                       <th style="width:8%">Cantidad</th>
-                    </tr>
+                      <th style="width:10%">Precio</th>
+                       </tr>
                   </thead>
                   <tbody>
         <% @orders_user.each do |order| %>
@@ -26,6 +25,7 @@
                       <td data-th="Quantity">                        
                         <span class="badge badge-warning" id="item_quantity_<%= order.id%>"><%= order.quantity%> </span>
                       </td>
+                      <td><%= order.price %></td>
                     </tr>
                     <% end %>
                   </tbody>

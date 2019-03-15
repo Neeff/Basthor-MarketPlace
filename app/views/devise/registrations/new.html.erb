@@ -1,47 +1,4 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :name%>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="field"> 
-    <%= f.label :address %> <br> 
-    <%= f.text_field :address, id: 'address_field'%>   
-        <%= link_to "#", class:"btn btn-primary", id: "get_location" do %><i class="fa fa-map-marker"> </i>
-        <% end %> 
-    </div>
-
-  <div class="fiel">
-    <%= f.label :Role %>
-    <%= f.select(:role,User.roles.keys.map {|role| [role.titleize,role]}) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
 
 <script>
 		$("#get_location").on('click', function(event){
@@ -70,4 +27,86 @@
 		    $("#get_location").html('<i class="fa fa-map-marker"></i>')
 		  });
 		};
-	      </script>
+        </script>
+        
+  <div class="row">
+      <div class="container center_div">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="card">
+            <article class="card-body">
+              <h4 class="card-title mt-3 text-center">Crea Una Cuenta</h4>
+              <p>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> &nbsp; Login via facebook</a>
+              </p>
+              <p class="divider-text">
+                    <span>O</span>
+                </p>
+              <form>
+              <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                 </div>
+
+
+                 <!-- input nombre-->
+                 <%= f.text_field :name, class: 'form-control', placeholder: 'Nombre' %>
+
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                 </div>
+
+
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Emails', class: 'form-control' %>
+
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                </div>
+                <%= f.select(:role,User.roles.keys.map {|role| [role.titleize,role]}, class: 'form-control') %>
+
+              </div> <!-- form-group end.// -->
+
+              <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><%= link_to "#", class:"btn btn-primary", id: "get_location" do %><i class="fa fa-map-marker"> </i>
+                      <% end %>  </span>
+                 </div>
+
+                 <%= f.text_field :address, id: 'address_field'%> 
+                    
+
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+
+                    <!--input password-->
+                    <% if @minimum_password_length %>
+                      <% end %><br />
+                      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'Password' %>
+
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                    
+                    <!--Input repeat password-->
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'Repetir Password' %>
+                </div> <!-- form-group// -->                                      
+                <div class="form-group">
+                    <%= f.submit "Sign up", class: 'btn btn-success' %>
+                    <!--submint -->
+                </div> <!-- form-group// -->      
+                <p class="text-center">Tienes Cuenta?<%= render "devise/shared/links" %></p>                                                                 
+            </form>
+            </article>
+            </div> <!-- card.// -->
+            <% end %>
+            </div>
+          </div>

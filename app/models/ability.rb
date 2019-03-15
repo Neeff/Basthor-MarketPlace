@@ -12,7 +12,7 @@ class Ability
           can :destroy, Shop, shop: { user_id: user.id }
           can :update, Shop, shop: { user_id: user.id }
         elsif user.client?
-          can :manage, :all 
+          can %i[read search search_range_price], [Shop, Product]
         else
           can :index, :show, :search, [Shop, Product]
         end

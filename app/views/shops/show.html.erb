@@ -202,7 +202,9 @@
                       $.ajax({
                         type: "GET",
                         url: "<%= search_range_price_shop_products_path(@shop) %>",
-                        data: {search: $('#range_price').val()},
+                        data: {search: $('#range_price').val(),
+                               min: $('#min').val(),
+                               max: $('#max').val()},
                         success: function (response) {
                             console.log(response)
                         }

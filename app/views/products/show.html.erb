@@ -2,14 +2,16 @@
           <br>
           <br>
           <br>      
+        <div class="float-right"><a href="<%= shop_path(@product.shop)%>"><i class="fas fa-store fa-2x text-gray-300"></i></a></div> 
+        <br>
+        <br>
         <div class="card">
                 <div class="row">
                         <aside class="col-sm-5 border-right">
-        <article class="gallery-wrap"> 
         <div class="img-big-wrap">
           <div><%= image_tag(@product.image.variant(resize: '600x700')) %></div>
         </div> <!-- slider-product.// -->
-        </article> <!-- gallery-wrap .end// -->
+
                         </aside>
                         <aside class="col-sm-7">
         <article class="card-body p-5">
@@ -44,8 +46,18 @@
                         </div> <!-- col.// -->
                 </div> <!-- row.// -->
                 <hr>
-                <%= link_to "Agregar al Carrito",shop_product_orders_path(@product.shop, @product), data: {remote: true}, method: :post, class:"btn btn-primary" %>
+                <% if can? :update, Product %>
+                <% else %>
+                <% if @product.stock == 0 %>
+                          <button type="button" class="btn btn-info" name="button">Producto Agotado</button>
+                    <%else %>
+                      <%= link_to "Agregar al Carrito",shop_product_orders_path(@product.shop, @product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
+                      <%end%>
+              <% end %>
         </article> <!-- card-body.// -->
                         </aside> <!-- col.// -->
                 </div> <!-- row.// -->
         </div> <!-- card.// -->
+
+
+        
