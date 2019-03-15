@@ -1,3 +1,8 @@
+
+<br>
+<br>
+<br>
+<br>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="row">
     <div class="container center_div">
@@ -5,7 +10,12 @@
     <article class="card-body">
      <h4 class="card-title mb-4 mt-1">Inicio de Sesion</h4>
       <p>
-        <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> &nbsp; Login via facebook</a>
+          <%- if devise_mapping.omniauthable? %>
+          <%- resource_class.omniauth_providers.each do |provider| %>
+            <%# link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+            <a href="<%= omniauth_authorize_path(resource_name, provider) %>" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> &nbsp; Login via facebook</a>
+          <% end %>
+          <% end %>
       </p>
       <hr>
         <div class="form-group input-icon">
@@ -29,7 +39,6 @@
                 </div> <!-- form-group// -->
             </div>
             <div class="col-md-6 text-right">
-               <%= render "devise/shared/links" %>
             </div>                                            
         </div> <!-- .row// -->                                                                  
     </article>

@@ -14,7 +14,7 @@ class Ability
         elsif user.client?
           can %i[read search search_range_price], [Shop, Product]
         else
-          can :index, :show, :search, [Shop, Product]
+          can %i[index show search], [Shop, Product]
         end
     
     # The first argument to `can` is the action you are giving the user

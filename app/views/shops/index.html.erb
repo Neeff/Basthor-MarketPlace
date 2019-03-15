@@ -63,11 +63,6 @@
     </header><!-- sect-heading -->
     
     <article>
-        <ul class="list-group list-group-horizontal">
-            <% if can? :create, Shop %>
-            <li class="list-group-item"><%= link_to  "Crear Tienda", new_shop_path, data:{ remote: true}%></li>
-            <% end %>
-        </ul>
           <br>
         <section class="section-content padding-y-sm bg">
             <div class="container">
@@ -168,10 +163,13 @@
             </div> <!-- container .//  -->
             </section>
             <br>
-
+    <div class="row">
+      <div class="col-lg-3">
       <div class="shops" id="shops">
         <%= render  @shops %>
+      </div>
     </div>
+  </div>
 
     </article>
     
