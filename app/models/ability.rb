@@ -7,6 +7,8 @@ class Ability
         user ||= User.new(role: 2) # guest user (not logged in)
         if user.provider?
           can %i[create read search], [Product, Shop]
+          can :create, Product, shop: { user_id: user.id }
+          can :create, Shop, shop: { user_id: user.id }
           can :destroy, Product, shop: { user_id: user.id }
           can :update, Product, shop:  { user_id: user.id }
           can :destroy, Shop, shop: { user_id: user.id }

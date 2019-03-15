@@ -15,7 +15,7 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params)
     @shop.user = current_user
     if @shop.save
-      redirect_to root_path, alert: 'askldjaksdjakj'
+      redirect_to root_path, notice: 'Tienda Creada Con Exito'
     else
       redirect_to root_path, alert: 'Error Tienda no Creada Intente Nuevamente'
     end
@@ -26,7 +26,7 @@ class ShopsController < ApplicationController
     @order = Order.new
     @categories = Category.all
   end
-  
+
   def edit
     respond_to :js
   end
