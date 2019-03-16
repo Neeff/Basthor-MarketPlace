@@ -24,8 +24,7 @@
 </div>
 <div class="field">
         <%= f.label :categorias %>
-        <%= f.select :category_id, @category.pluck(:name, :id),{}, include_blanck: "Please Select", size: 5, multiple: true%>
-
+        <%= f.select :category_id, @category.pluck(:name, :id),{}, include_blanck: "Please Select", size: 5, multiple: true %>
 </div>
 
 

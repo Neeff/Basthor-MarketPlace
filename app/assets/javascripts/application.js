@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= requiere jquery.remotipart
+//= require select2-full
 //= require activestorage
 //= require turbolinks
 //= require Chart.bundle

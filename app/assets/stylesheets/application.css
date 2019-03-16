@@ -15,4 +15,6 @@
  *= require_self
  *= require direct_uploads
  *= require active_storage_drag_and_drop
+ *= require select2
+ *= require select2-bootstrap
  */

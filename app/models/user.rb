@@ -22,4 +22,8 @@ end
   def cart
     orders.where(paid: false)
   end
+
+  def self.provider
+    where(role: :provider)
+  end
 end

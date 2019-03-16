@@ -62,7 +62,7 @@
         <h1 class="my-4"> <span class="badge badge-warning">Tiendas</span></h1>
     </header><!-- sect-heading -->
     
-    <article>
+    <!--<article>
           <br>
         <section class="section-content padding-y-sm bg">
             <div class="container">
@@ -85,7 +85,7 @@
               </div>
             </article>
             
-              </div> <!-- col.// -->
+              </div>
               <div class="col-md-9">
             <ul class="row no-gutters border-cols">
               <li class="col-6 col-md-3">
@@ -155,18 +155,21 @@
             </a>	
               </li>
             </ul>
-              </div> <!-- col.// -->
-            </div> <!-- row.// -->
+              </div> 
+            </div> 
               
-            </div> <!-- card.// -->
+            </div>
             
-            </div> <!-- container .//  -->
-            </section>
+            </div>
+            </section>-->
             <br>
+            <%= link_to "Pagar Proveedores", payout_batches_path, method: :post %>
     <div class="row">
+      <div class="col col-md-3" id="shops">
+        
         <%= render  @shops %>
-      
-    </div>
+
+      </div>
 
     </article>
     
