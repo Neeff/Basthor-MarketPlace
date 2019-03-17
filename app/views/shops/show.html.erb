@@ -2,14 +2,14 @@
 <br>
 <br>
 <div class="container">
-    <section class="section-pagetop bg-warning">
+    <section class="section-pagetop">
         <div class="container clearfix">
           <%= image_tag(@shop.images.second.variant(resize: '200x200'),class: 'd-block img-fluid') %>
           <h2><span class="badge badge-success"><%= @shop.name %></span></h2>
         </div> <!-- container //  -->
         </section>
     <ul class="list-group list-group-horizontal">
-        <% if current_user.provider? %>
+        <% if current_user.provider? && @shop.user_id == current_user.id %>
           <li class="list-group-item"><%= link_to "Editar Tienda", edit_shop_path(@shop), data:{ remote: true } %></li>
           <li class="list-group-item"><%= link_to "Eliminar Tienda",shop_path(@shop) ,method: :delete, data:{ remote: true , confirm: 'Estas Seguro!?'} %></li>
           <li class="list-group-item"><%= link_to "Crear Producto",new_shop_product_path(@shop), data:{ remote: true} %></li>
@@ -154,12 +154,7 @@
                                     <p>
                                         <% if can? :update, Product %>
                                         <%= link_to  "Editar", edit_shop_product_path(@shop,product), class: 'btn btn-info', data:{remote: true}  %>
-                                        <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{ confirm: 'Are you ready?',
-                                        'confirm-button-text': 'Im ready',
-                                        'cancel-button-text': 'No way',
-                                        'confirm-button-color': '#66CD00',
-                                        'sweet-alert-type': 'info',
-                                        text: 'This is a subtitle', remote: true}, method: :delete %>
+                                        <%= link_to  "Eliminar",shop_product_path(@shop, product), class: 'btn btn-danger', data:{ confirm: 'Estas Seguro?', remote: true}, method: :delete %>
           
                                         <% else %>
                                           <% if product.stock == 0 %>

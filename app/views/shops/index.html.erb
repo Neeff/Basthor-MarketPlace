@@ -1,6 +1,6 @@
-<section class="section-intro bg-success text-white text-center">
+<section class="text-white text-center">
   <div class="container d-flex flex-column"  style="min-height:80vh;">
-  
+
   <div class="row mt-auto">
       <div class="col-lg-8 col-sm-12 text-center mx-auto">
           <h1 class="display-4 mb-3">Basthor Marketplace</h1>
@@ -8,25 +8,9 @@
   </div>
   <div class="row">
       <div class="col-lg-9 col-md-8 col-sm-12 mx-auto text-center">
-          <form class="form-noborder">
-              <div class="form-row mb-5">
-                  <div class="col-lg-6 col-sm-12 form-group">
-                      <input class="form-control form-control-lg" placeholder="Busca tu Tienda" id="search" type="text">
-                  </div>
-                  <div class="col-lg-3 col-sm-12 form-group">
-                      <select class="custom-select form-control-lg">
-                        <option> All category </option>
-                        <option> Category name </option>
-                        <option> Category name </option>
-                        <option> Category name </option>
-                      </select>
-                  </div>
-                  <div class="col-lg-3 col-sm-12 form-group">
-                      <button class="btn btn-warning btn-block btn-lg" type="submit">Search</button>
-                  </div>
-              </div>
-          </form>
-          
+
+                <input class="form-control form-control-lg" placeholder="Busca tu Tienda" id="search" type="text">
+
           <ul class="list-inline my-5">
               <li class="list-inline-item">
                   <a class="h4 text-light p-2" href="#">
@@ -51,129 +35,37 @@
           </ul>
       </div> <!-- col.// -->
   </div> <!-- row.// -->
-  
+
   </div>
   </section>
-
+  <div class="container">
   <section class="section-content padding-y">
-    <div class="container">
-    
     <header class="section-heading">
         <h1 class="my-4"> <span class="badge badge-warning">Tiendas</span></h1>
     </header><!-- sect-heading -->
-    
-    <!--<article>
-          <br>
-        <section class="section-content padding-y-sm bg">
-            <div class="container">
-            
-            <header class="section-heading heading-line">
-              <h4 class="title-section bg">MACHINERY</h4>
-            </header>
-            
-            <div class="card">
-            <div class="row no-gutters">
-              <div class="col-md-3">
-              
-            <article href="#" class="card-banner h-100 bg2">
-              <div class="card-body zoom-wrap">
-                <h5 class="title">Machinery items for manufacturers</h5>
-                <p>Consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, cLorem ipsum dolor sit amet, cLorem ipsum dolor sit amet, cLorem ipsum dolor sit amet, c</p>
-                <a href="#" class="btn btn-warning">Explore</a>
-                <img src="images/items/item-sm.png" height="200" class="img-bg zoom-in">
-              </div>
-            </article>
-            
-              </div>
-              <div class="col-md-9">
-            <ul class="row no-gutters border-cols">
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Home and kitchen electronic  stuff collection  </p>
-                <img class="img-sm" src="images/items/1.jpg">
-              </div>
-            </a>
-              </li>
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Kitchen equipments collection</p>
-                <img class="img-sm" src="images/items/2.jpg">
-              </div>
-            </a>
-              </li>
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Accessiries and other good items</p>
-                <img class="img-sm" src="images/items/3.jpg">
-              </div>
-            </a>
-              </li>
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Techs, Electronics</p>
-                <img class="img-sm" src="images/items/4.jpg">
-              </div>
-            </a>	
-              </li>
-            </ul>
-            <ul class="row no-gutters border-cols">
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Home and kitchen electronic stuff </p>
-                <img class="img-sm" src="images/items/1.jpg">
-              </div>
-            </a>
-              </li>
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Kitchen equipments collection</p>
-                <img class="img-sm" src="images/items/2.jpg">
-              </div>
-            </a>
-              </li>
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Accessiries and other good items</p>
-                <img class="img-sm" src="images/items/3.jpg">
-              </div>
-            </a>
-              </li>
-              <li class="col-6 col-md-3">
-            <a href="#" class="itembox"> 
-              <div class="card-body">
-                <p class="word-limit">Techs, Electronics</p>
-                <img class="img-sm" src="images/items/4.jpg">
-              </div>
-            </a>	
-              </li>
-            </ul>
-              </div> 
-            </div> 
-              
-            </div>
-            
-            </div>
-            </section>-->
+
             <br>
-            <%= link_to "Pagar Proveedores", payout_batches_path, method: :post %>
-    <div class="row">
-      <div class="col col-md-3" id="shops">
-        
-        <%= render  @shops %>
-
+            <%# link_to "Pagar Proveedores", payout_batches_path, method: :post, class: 'btn btn-success' %>
+    <div class="row" id= "shops">
+        <% @shops.each do |shop| %>
+        <div class="col col-md-3">
+        <figure class="card card-product">
+          <div class="img-wrap">
+              <% if shop.images.attached? %>
+              <a href="<%= shop_path(shop)%>"><%= image_tag(shop.images.second.variant(resize: '400x266'), class: 'img-top')%></a>
+            <% end %>
+            <a class="btn-overlay" href="#">
+          </div>
+          <figcaption class="info-wrap">
+            <a href="#" class="title"><%= shop.name %></a>
+            <div class="action-wrap">
+              </div> <!-- price-wrap.// -->
+          </figcaption>
+        </figure> <!-- card // -->
       </div>
-
-    </article>
-    
-    </div> <!-- container .//  -->
+        <% end %>
+    </div>
+  </div>
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
 
@@ -188,9 +80,8 @@
                       url: "<%= search_shops_path%>",
                       data: {search: $('#search').val()},
                       success: function (response) {
-                              
+
                       }
                 });
                   });
                 </script>
-            

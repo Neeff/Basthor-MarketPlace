@@ -8,7 +8,7 @@ class Ability
         if user.provider?
           can %i[create read search], [Product, Shop]
           can :create, Product, shop: { user_id: user.id }
-          can :create, Shop, shop: { user_id: user.id }
+          #can :create, Shop, shop: { user_id: user.id }
           can :destroy, Product, shop: { user_id: user.id }
           can :update, Product, shop:  { user_id: user.id }
           can :destroy, Shop, shop: { user_id: user.id }
@@ -18,7 +18,7 @@ class Ability
         else
           can %i[index show search], [Shop, Product]
         end
-    
+
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

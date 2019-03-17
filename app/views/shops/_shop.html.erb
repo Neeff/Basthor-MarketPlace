@@ -1,14 +1,16 @@
 
-    <figure class="card card-product">
-      <div class="img-wrap"> 
-          <% if shop.images.attached? %>
-          <a href="<%= shop_path(shop)%>"><%= image_tag(shop.images.second.variant(resize: '400x266'), class: 'img-top')%></a>
-        <% end %>
-        <a class="btn-overlay" href="#">
+    <div class="col col-md-3">
+        <figure class="card card-product">
+          <div class="img-wrap"> 
+              <% if shop.images.attached? %>
+              <a href="<%= shop_path(shop)%>"><%= image_tag(shop.images.second.variant(resize: '400x266'), class: 'img-top')%></a>
+            <% end %>
+            <a class="btn-overlay" href="#">
+          </div>
+          <figcaption class="info-wrap">
+            <a href="#" class="title"><%= shop.name %></a>
+            <div class="action-wrap">
+              </div> <!-- price-wrap.// -->
+          </figcaption>
+        </figure> <!-- card // -->
       </div>
-      <figcaption class="info-wrap">
-        <a href="#" class="title"><%= shop.name %></a>
-        <div class="action-wrap">
-          </div> <!-- price-wrap.// -->
-      </figcaption>
-    </figure> <!-- card // -->

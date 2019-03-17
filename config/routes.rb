@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'locations/find_address'
-  resources :categories, only: %i[show]
+  resources :categories, only: %i[show] do
+    collection do
+      get :search
+    end
+  end
   resources :orders, only: %i[index destroy] do
     collection do
       get :cart

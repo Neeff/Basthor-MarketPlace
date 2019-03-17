@@ -22,15 +22,20 @@
          <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
          <% else %>
          <a class="dropdown-item" href="<%= orders_path%>">Ordenes <i class="fas fa-truck"></i></a>
+         <% if current_user.shop == nil %>
+             <a class="dropdown-item" href="#">Mi Tienda <i class="fas fa-store "></i></a>
+         <%else%>
+            <a class="dropdown-item" href="<%= shop_path(current_user.shop)%>">Mi Tienda <i class="fas fa-store "></i></a>
+         <% end %>
          <a class="dropdown-item" href="<%=  dashboard_orders_path %>">DashBoard <i class="fas fa-chart-line"></i></a>
          <div class="dropdown-divider"></div>
          <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
          <% end %>
        </div>
+     </li> 
+     <li class="nav-item">
+        <a class="nav-link" data-remote="true" href="<%= new_shop_path %>"><i class="fas fa-store "></i></a>
      </li>
-     <li class="nav-item active">
-      <a href="<%= new_shop_path %>" class="nav-link" data-remote="true"><i class="fas fa-store "></i></a>
-    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%= cart_orders_path%>"><i class="fas fa-shopping-cart"></i> <span class="badge badge-warning" id="cart"><%= current_user.cart.count %></span></a>
                   </li>
