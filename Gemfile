@@ -33,17 +33,28 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
+
 gem 'active_storage_drag_and_drop'
+
 gem 'paypal-sdk-rest'
+
 gem 'image_processing', '~> 1.2'
+
 gem 'remotipart'
+
 gem 'geocoder'
+
 gem "chartkick"
+
 gem 'groupdate'
+
 gem 'faker'
+
 gem 'activeadmin'
+
 gem 'omniauth-facebook'
 
+gem 'aws-sdk', '~> 3'
 
 gem 'cancancan', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb
