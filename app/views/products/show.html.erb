@@ -51,7 +51,10 @@
                 <% if @product.stock == 0 %>
                           <button type="button" class="btn btn-info" name="button">Producto Agotado</button>
                     <%else %>
-                      <%= link_to "Agregar al Carrito",shop_product_orders_path(@product.shop, @product),data: {remote: true}, method: :post, class:"btn btn-primary" %>
+                      <%= link_to(shop_product_orders_path(@product.shop,@product),data: {remote: true}, method: :post) do  %>
+                                                 <button class="btn btn-primary">Agregar al Carrito <i class="fas fa-shopping-cart"></i></button>
+
+                                                <% end %>
                       <%end%>
               <% end %>
         </article> <!-- card-body.// -->
