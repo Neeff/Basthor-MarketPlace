@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show]
+  before_action :set_category, only: %i[show serch]
 
   def show  
   end
@@ -7,11 +7,11 @@ class CategoriesController < ApplicationController
   def search
     parameters = params[:search]
     if parameters.blank?
-      @products = Product.all
+      @products = Product.where(category_id: @category.id)
     elsif parameters.nil?
-      @products = Product.all
+      @products = Product.where(category_id: @category.id)
     else
-      @products = Product.where('name LIKE ?', "%#{parameters}%")
+      @products = Product.where('name LIKE ?', "%#{parameters}%").where(category_id: @category.id)
     end
     respond_to :js
   end
