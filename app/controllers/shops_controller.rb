@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  #before_action :set_shop, only: %i[show edit update destroy]
+  before_action :set_shop, only: %i[show edit update destroy]
   load_and_authorize_resource
   def index
     @shops = Shop.all
@@ -41,7 +41,7 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop.delete
+    @shop.destroy
     respond_to :js
   end
 

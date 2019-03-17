@@ -10,8 +10,6 @@
         </section>
     <ul class="list-group list-group-horizontal">
         <% if current_user.provider? && @shop.user_id == current_user.id %>
-          <li class="list-group-item"><%= link_to "Editar Tienda", edit_shop_path(@shop), data:{ remote: true } %></li>
-          <li class="list-group-item"><%= link_to "Eliminar Tienda",shop_path(@shop) ,method: :delete, data:{ remote: true , confirm: 'Estas Seguro!?'} %></li>
           <li class="list-group-item"><%= link_to "Crear Producto",new_shop_product_path(@shop), data:{ remote: true} %></li>
          <% end %>
 

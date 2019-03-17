@@ -48,7 +48,7 @@
             <%# link_to "Pagar Proveedores", payout_batches_path, method: :post, class: 'btn btn-success' %>
     <div class="row" id= "shops">
         <% @shops.each do |shop| %>
-        <div class="col col-md-3">
+        <div class="col col-md-3" id="<%= shop.id%>">
         <figure class="card card-product">
           <div class="img-wrap">
               <% if shop.images.attached? %>
