@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     elsif parameters.nil?
       @products = Category.where(id: @category.id).products
     else
-      @products = Category.where(id: @category.id).products.where('name LIKE ?', "%#{parameters}%")
+      @products = Category.find(params[:id]).products.where('name LIKE ?', "%#{parameters}%")
     end
     respond_to :js
   end
