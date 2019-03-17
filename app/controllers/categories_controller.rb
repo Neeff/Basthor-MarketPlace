@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def search
+    @category = Category.find(params[:id])
     parameters = params[:search]
     if parameters.blank?
       @products = Category.where(category_id: @category.id).products
