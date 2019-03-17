@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show serch]
+  before_action :set_category, only: %i[show search]
 
   def show  
   end
