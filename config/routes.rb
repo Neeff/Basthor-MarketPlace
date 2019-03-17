@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'locations/find_address'
   resources :categories, only: %i[show] do
-    member do
+    collection do
       get :search
     end
   end
