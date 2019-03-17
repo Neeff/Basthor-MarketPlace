@@ -4,9 +4,7 @@ class Shop < ApplicationRecord
   has_many_attached :images
   has_many :orders, dependent: :destroy
 
-  validates :name, :description, presence: true
-
   def self.created_by_day
-    group_by_day(:created_at).countz
+    group_by_day(:created_at).count
   end
 end
