@@ -16,8 +16,8 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
       user.role = :client
-  end 
-end
+    end
+  end
 
   def cart
     orders.where(paid: false)

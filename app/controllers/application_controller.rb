@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, only: %i[index show]
+  before_action :authenticate_user!
   #check_authorization
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
