@@ -54,7 +54,7 @@ gem 'activeadmin'
 
 gem 'omniauth-facebook'
 
-gem 'aws-sdk', '~> 3'
+gem 'aws-sdk', '~> 3', require: false
 
 gem 'cancancan', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb
