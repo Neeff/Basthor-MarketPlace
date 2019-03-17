@@ -29,9 +29,7 @@
 		};
         </script>
   <br>
-  <br>
-  <br>
-  <br>
+  
 
   <div class="row">
       <div class="container center_div">
@@ -68,16 +66,10 @@
                  </div>
 
 
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Emails', class: 'form-control' %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'form-control' %>
 
                 </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                </div>
-                <%= f.select(:role,User.roles.keys.map {|role| [role.titleize,role]}, class: 'form-control') %>
-
-              </div> <!-- form-group end.// -->
+              
 
               <div class="form-group input-group">
                   <div class="input-group-prepend">
@@ -85,7 +77,7 @@
                       <% end %>  </span>
                  </div>
 
-                 <%= f.text_field :address, id: 'address_field'%> 
+                 <%= f.text_field :address, id: 'address_field', class: 'form-control'%> 
                     
 
                 </div> <!-- form-group// -->
@@ -108,12 +100,20 @@
                     
                     <!--Input repeat password-->
                     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'Repetir Password' %>
-                </div> <!-- form-group// -->                                      
+                </div> <!-- form-group// --> 
+
+                 <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                </div>
+                <%= f.select(:role,User.roles.keys.map {|role| [role.titleize,role]}, class: 'form-control') %>
+
+              </div> <!-- form-group end.// -->
+
                 <div class="form-group">
-                    <%= f.submit "Sign up", class: 'btn btn-success' %>
+                    <%= f.submit "Crear Cuenta", class: 'btn btn-success' %>
                     <!--submint -->
-                </div> <!-- form-group// -->      
-                <p class="text-center">Tienes Cuenta?</p>                                                                 
+                </div> <!-- form-group// -->                                                                 
             </form>
             </article>
             </div> <!-- card.// -->

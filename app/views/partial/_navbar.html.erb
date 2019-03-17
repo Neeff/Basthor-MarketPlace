@@ -21,13 +21,15 @@
          <a class="dropdown-item" href="<%=user_orders_path%>">Mis Pedidos <i class="fas fa-shopping-bag"></i></a>
          <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
          <% else %>
-         <a class="dropdown-item" href="<%= orders_path%>">Ordenes <i class="fas fa-truck"></i></a>
-         <% if current_user.shop == nil %>
+          <% if current_user.shop == nil %>
+         <a class="dropdown-item" href="#">Ordenes <i class="fas fa-truck"></i></a>
              <a class="dropdown-item" href="#">Mi Tienda <i class="fas fa-store "></i></a>
+              <a class="dropdown-item" href="#">DashBoard <i class="fas fa-chart-line"></i></a>
          <%else%>
+         <a class="dropdown-item" href="<%= orders_path%>">Ordenes <i class="fas fa-truck"></i></a>
             <a class="dropdown-item" href="<%= shop_path(current_user.shop)%>">Mi Tienda <i class="fas fa-store "></i></a>
+            <a class="dropdown-item" href="<%=  dashboard_orders_path %>">DashBoard <i class="fas fa-chart-line"></i></a>
          <% end %>
-         <a class="dropdown-item" href="<%=  dashboard_orders_path %>">DashBoard <i class="fas fa-chart-line"></i></a>
          <div class="dropdown-divider"></div>
          <a class="dropdown-item" data-method="DELETE" href="<%= destroy_user_session_path%>">Cerrar Sesion <i class="fas fa-user"></i></a>
          <% end %>

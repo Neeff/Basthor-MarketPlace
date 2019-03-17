@@ -5,4 +5,8 @@ class Product < ApplicationRecord
   has_many :categories, through: :category_products
   has_many :orders, dependent: :destroy
   has_many :users, through: :orders
+
+  validates :name, :description, presence: true
+  validates :stock, numericality: { only_integer: true }
+  validates :price, presence: true, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: { greater_than: 0, less_than: 1_000_000 }
 end
