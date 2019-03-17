@@ -7,11 +7,11 @@ class CategoriesController < ApplicationController
   def search
     parameters = params[:search]
     if parameters.blank?
-      @products = Product.where(category_id: @category.id)
+      @products = Category.where(category_id: @category.id).products
     elsif parameters.nil?
-      @products = Product.where(category_id: @category.id)
+      @products = Category.where(category_id: @category.id).products
     else
-      @products = Product.where('name LIKE ?', "%#{parameters}%").where(category_id: @category.id)
+      @products = Category.where(category_id: @category.id).products.where('name LIKE ?', "%#{parameters}%")
     end
     respond_to :js
   end
