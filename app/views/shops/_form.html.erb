@@ -12,7 +12,7 @@
         
         <div class="field">
                 <%= f.label :Imagenes %>
-                <%= f.drag_and_drop_file_field :images, nil, accept: 'image/png, image/jpeg, image/gif, image/tiff', multiple: true %>
+                <%= f.file_field :images, multiple: true %>
         </div>
         <%= f.submit 'Crear Tienda', class: 'btn btn-success' %>
 <% end %>

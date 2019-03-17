@@ -30,7 +30,7 @@
 
 <div class="field">
         <%= f.label :Agregar_Imagen_del_producto %>
-        <%= f.drag_and_drop_file_field :image, nil, accept: 'image/png, image/jpeg, image/gif, image/tiff' %>
+        <%= f.file_field :image %>
 </div>
 
 <%= f.submit 'Crear Producto', class: 'btn btn-success' %>
