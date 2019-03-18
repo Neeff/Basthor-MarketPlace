@@ -18,7 +18,7 @@ class BillingsController < ApplicationController
                     payment_method: "paypal" },
                     redirect_urls:{
                     return_url: "https://ancient-island-94056.herokuapp.com/billings/execute",
-                    cancel_url: "http://localhost:3000/" },
+                    cancel_url: "https://ancient-island-94056.herokuapp.com/" },
                     transactions: [{
                       item_list: {
                         items: items},
