@@ -5,11 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+100.times do |i|
+  User.create(name: Faker::Name.name, email: Faker::Internet.email, password: '123456', role: :client)
+end
 
-
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-
-
-
-
-#hacer seed
+users_ids = User.where(role: :client).pluck(:id)
+product_ids = Product.all.pluck(:id)
+shop_ids = Shop.all.pluck(:id)
+product_ids = Product.all.pluck(:id)
+true_or_false = [true, false]
+30.times do |i|
+  Order.create(user_id: users_ids.sample, product_id: product_ids.sample,shop_id: shop_ids.sample, price: rand(1..5), dispached:true, paid: true, quantity: rand(1..3), created_at: Faker::Number.number(1).to_i.day.ago)
+end
