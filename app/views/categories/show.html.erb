@@ -80,7 +80,7 @@
                   $('#search').keyup(function(){
                     $.ajax({
                       type: "GET",
-                      url: "<%= search_categories_path %>",
+                      url: "<%= search_category_path(@category) %>",
                       data: {search: $('#search').val()},
                       success: function (response) {
 

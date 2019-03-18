@@ -5,13 +5,14 @@ class CategoriesController < ApplicationController
   end
 
   def search
+    @category = Category.find(params[:id])
     parameters = params[:search]
     if parameters.blank?
-      @products = Category.find(params[:id]).products
+      @products = @category.products
     elsif parameters.nil?
-      @products = Category.find(params[:id]).products
+      @products = @category.products
     else
-      @products = Category.find(params[:id]).products.where('name LIKE ?', "%#{parameters}%")
+      @products = @category.products.where('name LIKE ?', "%#{parameters}%")
     end
     respond_to :js
   end
